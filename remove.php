@@ -1,13 +1,12 @@
 <?php
-include_once('config.php');
 
 if(!$_GET['id'])
 {
  die('Some error occured!!');
 }
 
-$db = @mysql_connect($database['host'], $database['username'], $database['password']) or die('Can\'t connect do database');
-@mysql_select_db($database['name']) or die('The database selected does not exists');
+$db = @mysql_connect($app['config']['database']['host'], $app['config']['database']['username'], $app['config']['database']['password']) or die('Can\'t connect do database');
+@mysql_select_db($app['config']['database']['name']) or die('The database selected does not exists');
 
 $query = sprintf('DELETE FROM contacts where ID = %s',
                  mysql_real_escape_string($_GET['id']));
