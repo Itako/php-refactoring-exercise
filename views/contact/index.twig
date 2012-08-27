@@ -1,0 +1,31 @@
+{% extends "layout.twig" %}
+{% block content %}
+<div class="actions">
+    <a href="{{ path('new') }}">New contact</a>
+</div>
+
+{% if contacts|length > 0 %}
+<table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Phone</th>
+        <th>Mobile</th>
+        <th>&nbsp;</th>
+    </tr>
+    {% for contact in contacts %}
+    <tr>
+        <td><a href="{{path('edit')}}?id={{contact.id}}" title="Modifica">{{contact.lastname}}</a></td>
+        <td>{{contact.firstname}}</td>
+        <td><a href="callto://{{contact.phone}}">{{contact.phone}}</a></td>
+        <td><a href="callto://{{contact.mobile}}">{{contact.mobile}}</a></td>
+        {# TODO: move this onclick event to external JS file #}
+        <td>[<a href="{{path('remove')}}?id={{contact.id}}" title="Elimina" onclick="if (confirm('Are you sure?')) {return true;} return false;">X</a>]</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+Database is empty
+{% endif %}
+{% endblock %}
