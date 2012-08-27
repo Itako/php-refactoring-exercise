@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     
     mysql_close($db);
     
-    header('Location: index.php');
+    header('Location: '.$app['url_generator']->generate('index'));exit;
     
   }
 }

@@ -19,7 +19,7 @@ $num = mysql_num_rows($rs);
 <?php include_once('header.php') ?>
 
 <div class="actions">
-  <a href="new.php">New contact</a>
+  <a href="<?php echo $app['url_generator']->generate('new') ?>">New contact</a>
  </div>
  
 <?php if ($num) : ?>
@@ -33,11 +33,11 @@ $num = mysql_num_rows($rs);
   </tr>
   <?php while($row = mysql_fetch_assoc($rs)) :?>
     <tr>
-      <td><a href="edit.php?id=<?php echo $row['id']?>" title="Modifica"><?php echo $row['lastname']?></a></td>
+      <td><a href="<?php echo $app['url_generator']->generate('edit') ?>?id=<?php echo $row['id']?>" title="Modifica"><?php echo $row['lastname']?></a></td>
       <td><?php echo $row['firstname']?></a></td>
       <td><a href="callto://<?php echo $row['phone']?>"><?php echo $row['phone']?></a></td>
       <td><a href="callto://<?php echo $row['mobile']?>"><?php echo $row['mobile']?></a></td>
-      <td>[<a href="remove.php?id=<?php echo $row['id']?>" title="Elimina" onclick="if (confirm('Are you sure?')) {return true;} return false;">X</a>]</td>
+      <td>[<a href="<?php echo $app['url_generator']->generate('remove') ?>?id=<?php echo $row['id']?>" title="Elimina" onclick="if (confirm('Are you sure?')) {return true;} return false;">X</a>]</td>
     </tr>
   <?php endwhile;?>
   </table>

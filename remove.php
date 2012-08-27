@@ -19,6 +19,4 @@ if(!mysql_query($query))
 
 mysql_close($db);
 
-header('Location: index.php');
-
-?>
+header('Location: '.$app['url_generator']->generate('index'));exit;
