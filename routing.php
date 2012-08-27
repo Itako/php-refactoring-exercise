@@ -1,10 +1,6 @@
 <?php
 
 use PRE\Controller\ContactController;
-use Silex\Application;
-
-/* @var $app Application */
-$app;
 
 $app->get("/", array(new ContactController,"indexAction"))->bind("index");
 $app->match("/new", array(new ContactController,"newAction"))->bind("new");

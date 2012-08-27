@@ -1,0 +1,29 @@
+<form method="post">
+
+{% if errors is defined and errors|length > 0 %}
+  <ul class="errors">
+  {% for error in errors %}
+    <li>{{error}}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+<input type="hidden" name="id" value="{{(contact is defined and (contact is defined and contact is not null)) ? contact.id : ""}}" />
+
+<label for="firstname">First Name*</label>
+<input type="text" id="firstname" name="firstname" value="{{(contact is defined and contact is not null) ? contact.firstname : ""}}" />
+
+<label for="lastname">Last Name*</label>
+<input type="text" id="lastname" name="lastname" value="{{(contact is defined and contact is not null) ? contact.lastname : ""}}" />
+
+<label for="phone">Phone*</label>
+<input type="text" id="phone" name="phone" value="{{(contact is defined and contact is not null) ? contact.phone : ""}}" />
+
+<label for="mobile">Mobile</label>
+<input type="text" id="mobile" name="mobile" value="{{(contact is defined and contact is not null) ? contact.mobile : ""}}" />
+
+<br/><br/>
+<input type="submit" value="Save" />
+<a href="{{path('index')}}" >Cancel</a>
+</form>
+<em>(* Mandatory fields)</em>
