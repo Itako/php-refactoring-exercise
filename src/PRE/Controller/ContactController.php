@@ -2,6 +2,7 @@
 
 namespace PRE\Controller;
 
+use PRE\Validator;
 use Silex\Application;
 
 class ContactController
@@ -14,7 +15,8 @@ class ContactController
 
     public function editAction(Application $app)
     {
-        $errors = array();
+        $errors = null;
+        
         if (!$app['request']->get("id"))
         {
             die('Some error occured!!');
@@ -22,7 +24,7 @@ class ContactController
 
         if ($app['request']->getMethod() == 'POST')
         {
-            $errors = validate(array('id', 'firstname', 'lastname', 'phone'), $_POST);
+            $errors = Validator::validate(array('id', 'firstname', 'lastname', 'phone'), $_POST);
 
             if (count($errors) == 0)
             {
@@ -52,10 +54,10 @@ class ContactController
 
     public function newAction(Application $app)
     {
-        $errors = array();
+        $errors = null;
         if ($app['request']->getMethod() == 'POST')
         {
-            $errors = validate(array('firstname', 'lastname', 'phone'), $_POST);
+            $errors = Validator::validate(array('firstname', 'lastname', 'phone'), $_POST);
 
             if (count($errors) == 0)
             {

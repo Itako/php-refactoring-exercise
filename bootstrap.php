@@ -44,7 +44,3 @@ $app->error(function (PDOException $e) use ($app)
         });
 
 require_once __DIR__ . '/routing.php';
-
-//TODO: remove this after refactorization (needed for legacy includes)
-set_include_path(__DIR__ . ";" . get_include_path());
-require_once('functions.php');
