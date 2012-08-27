@@ -1,5 +1,4 @@
 <?php
-include_once('config.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -7,8 +6,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
   
   if(count($errors) == 0)
   {
-    $db = @mysql_connect($database['host'], $database['username'], $database['password']) or die('Can\'t connect do database');
-    @mysql_select_db($database['name']) or die('The database selected does not exists');
+    $db = @mysql_connect($app['config']['database']['host'], $app['config']['database']['username'], $app['config']['database']['password']) or die('Can\'t connect do database');
+    @mysql_select_db($app['config']['database']['name']) or die('The database selected does not exists');
 
     $query = sprintf("INSERT INTO contacts (firstname, lastname, phone, mobile) VALUES ('%s', '%s', '%s', '%s')",
                        mysql_real_escape_string($_POST['firstname']),
@@ -26,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     
     mysql_close($db);
     
-    header('Location: index.php');
+    header('Location: '.$app['url_generator']->generate('index'));exit;
     
   }
 }

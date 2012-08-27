@@ -24,6 +24,6 @@
 
 <br/><br/>
 <input type="submit" value="Save" />
-<a href="index.php" >Cancel</a>
+<a href="<?php echo $app['url_generator']->generate('index') ?>" >Cancel</a>
 </form>
 <em>(* Mandatory fields)</em>
